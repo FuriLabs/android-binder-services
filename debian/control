@@ -1,0 +1,18 @@
+Source: android-binder-services
+Maintainer: Bardia Moshiri <bardia@furilabs.com>
+Section: misc
+Priority: optional
+Build-Depends: debhelper-compat (= 13),
+               libglib2.0-dev,
+               libgbinder-dev,
+               pkg-config,
+Standards-Version: 4.7.0
+Vcs-Browser: https://github.com/furilabs/android-binder-services
+Vcs-Git: https://github.com/furilabs/android-binder-services.git
+
+Package: android-vibrator-hal
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends},
+         feedbackd,
+Description: Provides android sensors HAL using libgbinder to the Android container
+ Using Feedbackd DBus
