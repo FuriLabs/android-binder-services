@@ -1,0 +1,11 @@
+[Unit]
+Description=Android vibrator service
+StartLimitBurst=5000
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=/usr/libexec/android-vibrator
+RestartSec=1
+TimeoutStartSec=5
+Restart=always

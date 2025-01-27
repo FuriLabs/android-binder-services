@@ -16,6 +16,8 @@ $(TARGET): $(SRC)
 install: $(TARGET)
 	install -d $(DESTDIR)$(LIBEXEC_DIR)
 	install -m 755 $(TARGET) $(DESTDIR)$(LIBEXEC_DIR)/$(TARGET)
+	install -d $(DESTDIR)$(PREFIX)/lib/systemd/user
+	install -m 0644 android-vibrator.service $(DESTDIR)$(PREFIX)/lib/systemd/user
 
 clean:
 	rm -f $(TARGET)
