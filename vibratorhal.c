@@ -123,6 +123,10 @@ vibrator_reply(GBinderLocalObject* obj,
         case VIBRATOR_OFF:
             g_debug ("vibrator off");
             reply = gbinder_local_object_new_reply(obj);
+
+            gbinder_local_reply_append_int32(reply, GBINDER_STATUS_OK);
+            *status = GBINDER_STATUS_OK;
+
             gbinder_local_reply_init_writer(reply, &writer);
             gbinder_writer_append_int32(&writer, STATUS_OK);
             break;
