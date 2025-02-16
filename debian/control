@@ -14,5 +14,5 @@ Package: android-vibrator-hal
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
          feedbackd,
-Description: Provides android sensors HAL using libgbinder to the Android container
+Description: Provides Android vibrator HAL using libgbinder to the Android container
  Using Feedbackd DBus
