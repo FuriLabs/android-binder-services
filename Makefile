@@ -1,23 +1,22 @@
 CC = gcc
+
 CFLAGS = `pkg-config --cflags glib-2.0 gio-2.0 libgbinder`
 LDFLAGS = `pkg-config --libs glib-2.0 gio-2.0 libgbinder`
-SRC = vibratorhal.c
-TARGET = android-vibrator
+
+SOURCES_VIBRATOR = vibrator/vibratorhal.c
+
+TARGET_VIBRATOR = android-vibrator
+
 PREFIX ?= /usr
-LIBEXEC_DIR = $(PREFIX)/libexec
 
-.PHONY: all clean install
+$(TARGET_VIBRATOR): $(SOURCES)
+	$(CC) $(SOURCES_VIBRATOR) -o $(TARGET_VIBRATOR) $(CFLAGS) $(LDFLAGS)
 
-all: $(TARGET)
-
-$(TARGET): $(SRC)
-	$(CC) $(SRC) -o $(TARGET) $(CFLAGS) $(LDFLAGS)
-
-install: $(TARGET)
-	install -d $(DESTDIR)$(LIBEXEC_DIR)
-	install -m 755 $(TARGET) $(DESTDIR)$(LIBEXEC_DIR)/$(TARGET)
+install: $(TARGET_VIBRATOR)
+	install -d $(DESTDIR)$(PREFIX)/libexec
+	install -m 755 $(TARGET_VIBRATOR) $(DESTDIR)$(PREFIX)/libexec/
 	install -d $(DESTDIR)$(PREFIX)/lib/systemd/user
-	install -m 0644 android-vibrator.service $(DESTDIR)$(PREFIX)/lib/systemd/user
+	install -m 0644 vibrator/android-vibrator.service $(DESTDIR)$(PREFIX)/lib/systemd/user/
 
 clean:
 	rm -f $(TARGET)
